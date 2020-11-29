@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.seu.zqy.dao.UserDao">
+<!--    <insert id="Insert">-->
+<!--        INSERT INTO tuser (id,username,password,email)-->
+<!--        VALUES (#{id},#{username},#{password},#{email})-->
+<!--    </insert>-->
+<!--    parameterType="com.seu.zqy.bean.User"-->
+<!--    keyProperty="id" keyColumn="id" useGeneratedKeys="true"-->
+    <insert id="Insert" keyProperty="id" keyColumn="id" useGeneratedKeys="true">
+--         alter table tuser auto_increment=1;
+        insert into tuser(username, email, password) values (#{username},#{email}, #{password})
+    </insert>
+
+    <update id="update">
+        UPDATE tuser
+            SET username=#{username},email=#{email},password=#{password}
+            WHERE id=#{id}
+    </update>
+
+    <select id="getbyid" resultType="com.seu.zqy.bean.User">
+        select * from tuser where id=#{id}
+    </select>
+
+    <select id="getbyusername" resultType="com.seu.zqy.bean.User">
+        select * from tuser where  username=#{username}
+    </select>
+
+    <select id="getbyidAndusername" resultType="com.seu.zqy.bean.User">
+        select * from tuser where  id=#{id} and username=#{username}
+    </select>
+
+    <select id="getbyusernameandpassword" resultType="com.seu.zqy.bean.User">
+        select * from tuser where  password=#{password} and username=#{username}
+    </select>
+
+    <select id="getall" resultType="com.seu.zqy.bean.User">
+        select * from tuser
+    </select>
+
+</mapper>
